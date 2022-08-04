@@ -1,21 +1,15 @@
 
 const express = require('express');
 
+const carrosController = require('./controller/CarrosController')
+
 const app = express();
 
-app.get('/', (req, res)=>{
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
-    console.log('ROTA RAIZ DE VERBO HTTP GET!');
-    res.send('ROTA RAIZ DE VERBO HTTP GET!');
-
-});
-
-app.get('/teste', (req, res)=>{
-
-    console.log('ROTA DE TESTE DE VERBO HTTP GET!');
-    res.send('ROTA DE TESTE DE VERBO HTTP GET!');
-
-});
+console.log('A REQUISIÇÃO PASSOU PELO INDEX');
+app.use('/', carrosController);
 
 
 app.listen(3000, ()=>{
