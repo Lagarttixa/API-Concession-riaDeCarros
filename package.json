@@ -4,6 +4,7 @@
   "description": "APIREST de gestão de carros.",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -16,6 +17,9 @@
   "author": "ABNER REZENDE MACHADO",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3",
+    "sqlite3": "^5.0.11"
   }
 }
