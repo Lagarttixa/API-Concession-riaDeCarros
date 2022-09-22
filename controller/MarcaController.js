@@ -43,10 +43,14 @@ router.get('/listarMarca/:id',(req, res)=>{
 });
 
 router.post('/inserirMarca', (req, res)=>{
-    let {marca} = req.body;
-    
+    let {id_marca, nome_marca} = req.body;
+
     MarcaModel.create(
-        {marca}
+        {
+            id_marca,
+            nome_marca
+        }
+        
     ).then(
         ()=>{
             return res.status(201).json({
@@ -65,12 +69,13 @@ router.post('/inserirMarca', (req, res)=>{
     );
 });
 
-router.put('/atualizarMarca', (req, res)=>{
-    let {id, marca} = req.body;
+router.put('/atualizarMarca/:id_marca', (req, res)=>{
+    let {id_marca, nome_marca} = req.body;
 
     MarcaModel.update(
-        {marca},
-        {where:{id}}
+        {nome_marca},
+        {where:{id_marca}}
+
     ).then( ()=>{
 
         return res.status(200).json({
@@ -80,21 +85,21 @@ router.put('/atualizarMarca', (req, res)=>{
 
     }).catch(
         (erro)=>{
-                    return res.status(400).json({
-                        erroStatus: true,
-                        erroMessagem: 'Houve um erro ao alterar marca',
-                        erroBancoDados: erro
-                    });
+            return res.status(400).json({
+                erroStatus: true,
+                erroMessagem: 'Houve um erro ao alterar marca',
+                erroBancoDados: erro
+            });
         }
     );
 });
 
-router.delete('/deletarMarca', (req, res)=>{
+router.delete('/deletarMarca/:id_marca', (req, res)=>{
     
-    let {id} = req.params;
+    let {id_marca} = req.params;
 
-    CarrosModel.destroy(
-        {where: {id}}
+    MarcaModel.destroy(
+        {where: {id_marca}}
     ).then( ()=>{
 
         return res.status(200).json({
